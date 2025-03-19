@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import "../styles/Home.css"; // Percorso corretto
-import meditationImage from "../assets/meditation-illustration.png"; // Importa l'immagine
 
 const Home = () => {
   const navigate = useNavigate(); // Hook per la navigazione

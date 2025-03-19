@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Timer.css";
 import SoundControl from "../components/SoundControl"; 
 import Timer from "../components/Timer";
-import MotivationalQuotes from "../components/MotivationalQuotes";
 
 const TimerPage = () => {
   const navigate = useNavigate();
@@ -83,10 +82,6 @@ const TimerPage = () => {
           </button>
           </div>
 
-          {/* 🟢 Frase motivazionale sotto i pulsanti */}
-          <div className="motivational-container">
-            <MotivationalQuotes />
-          </div>
         </div>
       </div>
     </div>
