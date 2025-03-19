@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Timer.css";
-import SoundControl from "../components/SoundControl"; 
 import Timer from "../components/Timer";
+import SoundPlayer from "../components/SoundPlayer";
 
 const TimerPage = () => {
   const navigate = useNavigate();
@@ -42,12 +42,11 @@ const TimerPage = () => {
         </svg>
       </button>
 
-      {/* 🟢 WRAPPER PER SOUND, TIMER, CONTROLLI E FRASE MOTIVAZIONALE */}
       <div className="timer-wrapper">
-        <SoundControl className="sound-control" />  {/* 🎵 Controllo audio */}
+        <SoundPlayer /> {/* 🎵 Player musicale sopra il timer */}
         <Timer time={time} />  {/* ⏳ Timer */}
         
-        {/* 🟢 CONTROLLI TIMER E FRASE MOTIVAZIONALE */}
+        {/* 🟢 CONTROLLI TIMER*/}
         <div className="controls-and-quotes">
           <div className="timer-controls">
             {/* Play/Pausa */}
