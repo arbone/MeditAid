@@ -1,0 +1,107 @@
+/* Nasconde temporaneamente la navbar e il footer */
+.navbar, .footer {
+    display: none !important;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Rimuove qualsiasi margine e padding indesiderato */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Imposta lo sfondo per tutta la viewport */
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Evita lo scrolling */
+    background-color: #faefe2; /* Sfondo uniforme */
+}
+
+/* Contenitore principale */
+#root {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #faefe2; /* Colore coerente */
+}
+
+/* Home container */
+@media screen and (max-width: 768px) {
+    .home-container {
+        width: 90vw;  /* Prima era 100vw, ora lascia margini solo su mobile */
+        max-width: 420px;
+        padding: 0 30px;  /* Aggiunge margine laterale solo su mobile */
+    }
+}
+
+
+.home-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: inherit; /* Inherit per mantenere la coerenza */
+}
+
+/* Testo e titoli */
+h1 {
+    font-size: 2.8rem; /* Leggermente più grande */
+    color: #d04f2a;
+    margin-bottom: 10px; /* Aggiunge spazio sotto il titolo */
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #6b3a3a;
+    margin-bottom: 20px; /* Più distanziato dal resto */
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6; /* Aggiunge spazio tra le righe */
+    margin-bottom: 25px;
+    color: #402222;
+}
+
+/* Pulsante CTA */
+.cta-button {
+    background: #d04f2a;
+    color: white;
+    font-size: 1.3rem; /* Più grande */
+    padding: 12px 25px; /* Più spazio interno */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button:hover {
+    background: #b8431f;
+    transform: scale(1.05); /* Leggero effetto al passaggio */
+}
+
+.home-image {
+    width: 60%;
+    max-width: 400px;
+}
+
+@media (max-width: 600px) { /* Su mobile */
+    .home-image {
+        width: 80%;  /* Più grande su schermi piccoli */
+        max-width: 250px;
+    }
+}

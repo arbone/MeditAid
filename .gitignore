@@ -1,0 +1,22 @@
+# Evita di tracciare dipendenze e build
+node_modules/
+.cache/
+*.log
+*.lock
+
+# Evita di tracciare file di configurazione locali e ambienti
+.env
+*.local
+*.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Evita di tracciare file specifici del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Evita di tracciare configurazioni specifiche dell'IDE
+.vscode/
+.idea/
+*.iml
