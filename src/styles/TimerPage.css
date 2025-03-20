@@ -29,7 +29,7 @@ html, body {
 /* Pulsante Back */
 .back-button {
   position: fixed;
-  top: max(50px, env(safe-area-inset-top) + 20px);
+  top: max(40px, env(safe-area-inset-top) + 20px);
   left: 20px;
   background: none;
   border: none;
@@ -102,5 +102,29 @@ html, body {
   
   .timer-wrapper {
       min-height: -webkit-fill-available;
+  }
+}
+/* TimerPage.css */
+.credits-button {
+  position: fixed;
+  top: max(50px, env(safe-area-inset-top) + 20px);
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 100;
+}
+
+.credits-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(30%);
+}
+
+/* Fix per Safari */
+@supports (-webkit-touch-callout: none) {
+  .credits-button {
+    top: env(safe-area-inset-top) + 20px;
   }
 }

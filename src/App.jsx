@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import TimerPage from "./pages/TimerPage";
 import "./styles/App.css";
+import Credits from './pages/Credits';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/timer" element={<TimerPage />} />
+          <Route path="/credits" element={<Credits />} />
         </Routes>
       </div>
     </Router>

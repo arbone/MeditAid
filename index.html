@@ -1,26 +1,66 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <link rel="apple-touch-icon" sizes="180x180" href="./src/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./src/assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="./src/assets/favicon/site.webmanifest">
+    
+    <!-- Meta tag esistenti -->
     <meta charset="UTF-8" />
     <meta name="viewport" 
-    content="width=device-width, 
-    initial-scale=1.0, 
-    maximum-scale=1.0, 
-    user-scalable=no, 
-    viewport-fit=cover"
+          content="width=device-width, 
+          initial-scale=1.0, 
+          maximum-scale=1.0, 
+          user-scalable=no, 
+          viewport-fit=cover"
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+    <!-- SEO e social media -->
+    <meta name="description" content="MeditAid - La tua app per la meditazione e il rilassamento" />
+    <meta name="keywords" content="meditazione, rilassamento, mindfulness, benessere, salute mentale" />
+    <meta name="author" content="MeditAid" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://meditaid.netlify.app/" />
+    <meta property="og:title" content="MeditAid - Meditazione e Rilassamento" />
+    <meta property="og:description" content="La tua app per la meditazione e il rilassamento" />
+    <meta property="og:image" content="https://meditaid.netlify.app/assets/meditation-illustration-6yiltrzq.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://meditaid.netlify.app/" />
+    <meta property="twitter:title" content="MeditAid - Meditazione e Rilassamento" />
+    <meta property="twitter:description" content="La tua app per la meditazione e il rilassamento" />
+    <meta property="twitter:image" content="https://meditaid.netlify.app/assets/meditation-illustration-6yiltrzq.png" />
+
+    <!-- Theme color per browser mobile -->
+    <meta name="theme-color" content="#fbeee0" />
+    
+    <!-- Preconnect per performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- PWA related -->
+    <meta name="apple-mobile-web-app-title" content="MeditAid" />
+    <link rel="mask-icon" href="./src/assets/favicon/safari-pinned-tab.svg" color="#d04f2a" />
+    <meta name="msapplication-TileColor" content="#fbeee0" />
+
+    <!-- iOS splash screens -->
+    <link rel="apple-touch-startup-image" href="https://meditaid.netlify.app/assets/meditation-illustration-6yiltrzq.png" />
+    
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <title>MeditAid</title>
-  </head>
-  <body>
+</head>
+<body>
     <div id="root"></div>
     <script type="module" src="./src/main.jsx"></script>
-  </body>
+</body>
 </html>
-
