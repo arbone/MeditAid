@@ -43,11 +43,10 @@ h1 {
 .subtitle {
     font-size: 1.3rem;
     color: #6b3a3a;
-    margin-bottom: 20px; /* Più distanziato dal resto */
 }
 
 .description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6; /* Aggiunge spazio tra le righe */
     margin-bottom: 25px;
     color: #402222;
