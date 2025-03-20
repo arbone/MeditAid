@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-
+import Gratitudine from "../sounds/Gratitudine.mp3";
+import Respiro from "../sounds/Respiro.mp3";
+import RilassamentoProfondo from "../sounds/Rilassamento_Profondo.mp3";
 
 const tracks = [
-  { title: "Gratitudine", src: "/sounds/Gratitudine.mp3" },
-  { title: "Respiro", src: "/sounds/Respiro.mp3" },
-  { title: "Rilassamento Profondo", src: "/sounds/Rilassamento_Profondo.mp3" },
+  { title: "Gratitudine", src: Gratitudine },
+  { title: "Respiro", src: Respiro },
+  { title: "Rilassamento Profondo", src: RilassamentoProfondo },
 ];
 
 const SoundPlayer = () => {
