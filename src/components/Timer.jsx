@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Timer.css"; // Importiamo il CSS per lo stile
+import "../styles/TimerPage.css"; // Importiamo il CSS per lo stile
 
 const Timer = ({ time }) => {
   // Convertiamo secondi in MM:SS

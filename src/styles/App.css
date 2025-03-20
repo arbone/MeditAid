@@ -1,39 +1,30 @@
-.timer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  width: 100%;
-  max-width: 300px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
-.timer-display {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
+/* Rimuove qualsiasi margine e padding indesiderato */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.timer-btn, .timer-reset {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+/* Imposta lo sfondo per tutta la viewport */
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Evita lo scrolling */
+    background-color: #faefe2; /* Sfondo uniforme */
 }
 
-.timer-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.timer-reset {
-  background-color: #dc3545;
-  color: white;
+/* Contenitore principale */
+#root {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #faefe2; /* Colore coerente */
 }

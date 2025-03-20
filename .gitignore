@@ -1,4 +1,5 @@
 # Evita di tracciare dipendenze e build
+dist/
 node_modules/
 .cache/
 *.log

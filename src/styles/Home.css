@@ -1,44 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Rimuove qualsiasi margine e padding indesiderato */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Imposta lo sfondo per tutta la viewport */
-html, body {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden; /* Evita lo scrolling */
-    background-color: #faefe2; /* Sfondo uniforme */
-}
-
-/* Contenitore principale */
-#root {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #faefe2; /* Colore coerente */
-}
-
 /* Home container */
-@media screen and (max-width: 768px) {
-    .home-container {
-        width: 90vw;  /* Prima era 100vw, ora lascia margini solo su mobile */
-        max-width: 420px;
-        padding: 0 30px;  /* Aggiunge margine laterale solo su mobile */
-    }
-}
-
-
 .home-container {
     width: 100vw;
     height: 100vh;
@@ -49,6 +9,29 @@ html, body {
     text-align: center;
     background-color: inherit; /* Inherit per mantenere la coerenza */
 }
+
+@media screen and (max-width: 768px) {
+    .home-container {
+        width: 90vw;  /* Prima era 100vw, ora lascia margini solo su mobile */
+        max-width: 420px;
+        padding: 0 30px;  /* Aggiunge margine laterale solo su mobile */
+    }
+}
+
+/* Fix specifico per Safari mobile */
+@supports (-webkit-touch-callout: none) {
+    h1 {
+      margin-top: -60px; /* Riduce lo spazio sopra il titolo solo su Safari */
+    }
+    
+    /* Se necessario, puoi aggiungere anche una media query per limitarlo solo ai dispositivi mobili */
+    @media (max-width: 768px) {
+      h1 {
+        margin-top: -60px; /* Valore più aggressivo per schermi più piccoli */
+      }
+    }
+  }
+  
 
 /* Testo e titoli */
 h1 {

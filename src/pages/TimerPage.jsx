@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Timer.css";
+import "../styles/TimerPage.css";
 import Timer from "../components/Timer";
 import SoundPlayer from "../components/SoundPlayer";
 
