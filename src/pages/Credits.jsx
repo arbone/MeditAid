@@ -46,7 +46,7 @@ const Credits = () => {
               <div className="tech-item">React.js</div>
               <div className="tech-item">Vite</div>
               <div className="tech-item">CSS3</div>
-              <div className="tech-item">Web Audio API</div>
+              <div className="tech-item">AI Sound Generation</div>
             </div>
           </div>
 
