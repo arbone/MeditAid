@@ -1,5 +1,3 @@
-Ecco un README.md completo e professionale per il tuo progetto:
-
 ```markdown
 # MeditAid 🧘‍♂️
 
