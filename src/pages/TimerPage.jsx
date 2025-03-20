@@ -7,11 +7,10 @@ import SoundPlayer from "../components/SoundPlayer";
 
 const TimerPage = () => {
   const navigate = useNavigate();
-  const [time, setTime] = useState(300); // 5 minuti in secondi
+  const [time, setTime] = useState(300);
   const [isRunning, setIsRunning] = useState(false);
   const timerInterval = useRef(null);
 
-  // Gestione del timer
   useEffect(() => {
     if (isRunning) {
       timerInterval.current = setInterval(() => {
@@ -27,7 +26,6 @@ const TimerPage = () => {
     } else {
       clearInterval(timerInterval.current);
     }
-    
     return () => clearInterval(timerInterval.current);
   }, [isRunning]);
 
@@ -37,21 +35,19 @@ const TimerPage = () => {
 
   const resetTimer = () => {
     setIsRunning(false);
-    setTime(300); // Resetta a 5 minuti
+    setTime(300);
   };
 
   const addFiveMinutes = () => {
     setTime((prevTime) => prevTime + 300);
   };
 
-  // Funzione passata a SoundPlayer per sincronizzare lo stato di riproduzione
   const handleSoundPlayerStateChange = (isPlaying) => {
     setIsRunning(isPlaying);
   };
 
-  // Funzione che gestisce il reset dal SoundPlayer
   const handleResetTrack = () => {
-    resetTimer(); // Resetta il timer quando viene resettata una traccia
+    resetTimer();
   };
 
   return (
@@ -64,14 +60,13 @@ const TimerPage = () => {
 
       <div className="timer-wrapper">
         <SoundPlayer 
-          onPlayStateChange={handleSoundPlayerStateChange} 
-          onResetTrack={handleResetTrack} 
+          onPlayStateChange={handleSoundPlayerStateChange}
+          onResetTrack={handleResetTrack}
         />
         <Timer time={time} />
 
         <div className="controls-and-quotes">
           <div className="timer-controls">
-            {/* Play/Pausa */}
             <button className="control-button" onClick={toggleTimer}>
               {isRunning ? (
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,15 +80,13 @@ const TimerPage = () => {
               )}
             </button>
 
-            {/* Reset */}
             <button className="control-button" onClick={resetTimer}>
               <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path>
-                <path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path>
+                <path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43a8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path>
               </svg>
             </button>
 
-            {/* Rimuovi 5 minuti */}
             <button className="control-button" onClick={() => setTime((prevTime) => Math.max(prevTime - 300, 0))}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 4.5L12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.7288 22 5.82446 20.4293 4 18.001M8 2.83209C6.87754 3.32251 5.86251 4.01303 5 4.85857C3.14864 6.67349 2 9.20261 2 12C2 12.6849 2.06886 13.3538 2.20004 14" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -101,7 +94,6 @@ const TimerPage = () => {
               </svg>
             </button>
 
-            {/* Aggiungi 5 minuti */}
             <button className="control-button" onClick={addFiveMinutes}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 4.5L12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 7.89936 19.5318 4.3752 16 2.83209" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> 

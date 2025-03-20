@@ -16,7 +16,6 @@ const SoundPlayer = ({ onPlayStateChange, onResetTrack }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio] = useState(new Audio());
 
-  // Notifica il TimerPage dello stato di riproduzione
   useEffect(() => {
     if (onPlayStateChange) {
       onPlayStateChange(isPlaying);
@@ -45,8 +44,7 @@ const SoundPlayer = ({ onPlayStateChange, onResetTrack }) => {
       audio.pause();
       audio.currentTime = 0;
       setIsPlaying(false);
-      
-      // Notifica il TimerPage che è stato effettuato un reset
+      // Chiamata alla funzione di reset del timer
       if (onResetTrack) {
         onResetTrack();
       }
@@ -65,7 +63,6 @@ const SoundPlayer = ({ onPlayStateChange, onResetTrack }) => {
             <p className="artist">MeditAid</p>
           </div>
 
-          {/* Play/Pausa */}
           <button className="control-button" onClick={() => playTrack(track)}>
             {currentTrack === track.src && isPlaying ? (
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +76,6 @@ const SoundPlayer = ({ onPlayStateChange, onResetTrack }) => {
             )}
           </button>
 
-          {/* Reset */}
           <button className="control-button" onClick={() => resetTrack(track)}>
             <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path>
@@ -93,3 +89,4 @@ const SoundPlayer = ({ onPlayStateChange, onResetTrack }) => {
 };
 
 export default SoundPlayer;
+
