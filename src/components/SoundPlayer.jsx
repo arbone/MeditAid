@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// SoundPlayer.jsx
+import React, { useState, useEffect } from "react";
+
 import Gratitudine from "../sounds/Gratitudine.mp3";
 import Respiro from "../sounds/Respiro.mp3";
 import RilassamentoProfondo from "../sounds/Rilassamento_Profondo.mp3";
@@ -9,10 +11,17 @@ const tracks = [
   { title: "Rilassamento Profondo", src: RilassamentoProfondo },
 ];
 
-const SoundPlayer = () => {
+const SoundPlayer = ({ onPlayStateChange, onResetTrack }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio] = useState(new Audio());
+
+  // Notifica il TimerPage dello stato di riproduzione
+  useEffect(() => {
+    if (onPlayStateChange) {
+      onPlayStateChange(isPlaying);
+    }
+  }, [isPlaying, onPlayStateChange]);
 
   const playTrack = (track) => {
     if (currentTrack === track.src) {
@@ -36,6 +45,11 @@ const SoundPlayer = () => {
       audio.pause();
       audio.currentTime = 0;
       setIsPlaying(false);
+      
+      // Notifica il TimerPage che è stato effettuato un reset
+      if (onResetTrack) {
+        onResetTrack();
+      }
     }
   };
 
@@ -79,63 +93,3 @@ const SoundPlayer = () => {
 };
 
 export default SoundPlayer;
-
-// CSS incorporato per facilitare la gestione
-const styles = `
-  .main {
-    background-color: white;
-    padding: 1em;
-    padding-bottom: 1.1em;
-    border-radius: 15px;
-    margin: 1em;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .loader {
-    display: flex;
-    flex-direction: row;
-    height: 4em;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-radius: 10px;
-    transition: .4s ease-in-out;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .loader:hover {
-    background-color: lightgray;
-  }
-
-  .currentplaying {
-    display: flex;
-    align-items: center;
-    margin: 1em;
-  }
-
-  .heading {
-    font-size: 1.1em;
-    font-weight: bold;
-  }
-
-  .song {
-    flex-grow: 1;
-    text-align: left;
-  }
-
-  .play {
-    width: 20px;
-    height: 20px;
-    background: black;
-    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-  }
-`;
-
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
