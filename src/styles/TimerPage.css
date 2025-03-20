@@ -104,10 +104,10 @@ html, body {
       min-height: -webkit-fill-available;
   }
 }
-/* TimerPage.css */
+/* Pulsante Credits - utilizzando gli stessi valori del back button */
 .credits-button {
   position: fixed;
-  top: max(50px, env(safe-area-inset-top) + 20px);
+  top: max(46px, env(safe-area-inset-top) + 20px); /* Stesso valore del back button */
   right: 20px;
   background: none;
   border: none;
@@ -119,12 +119,14 @@ html, body {
 .credits-icon {
   width: 24px;
   height: 24px;
-  filter: invert(30%);
 }
 
-/* Fix per Safari */
+/* Fix per Safari - incluso nel supporto esistente */
 @supports (-webkit-touch-callout: none) {
-  .credits-button {
-    top: env(safe-area-inset-top) + 20px;
+  .timer-page {
+    height: -webkit-fill-available;
+  }
+  .timer-wrapper {
+    min-height: -webkit-fill-available;
   }
 }
