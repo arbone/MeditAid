@@ -28,19 +28,6 @@
       src="https://browser.sentry-cdn.com/8.47.0/bundle.min.js"
       crossorigin="anonymous"
     ></script>
-    <script>
-      const sentryDsn = "%VITE_SENTRY_DSN%";
-      const appEnvironment = "%VITE_APP_ENV%";
-
-      if (window.Sentry && sentryDsn && !sentryDsn.startsWith("%")) {
-        window.Sentry.init({
-          dsn: sentryDsn,
-          environment: appEnvironment && !appEnvironment.startsWith("%")
-            ? appEnvironment
-            : "production"
-        });
-      }
-    </script>
 </head>
 <body>
     <div id="root"></div>
