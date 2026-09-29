@@ -1,10 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
-import "../styles/Home.css"; // Percorso corretto
-import meditationImage from "../assets/meditation-illustration.png"; // Importa l'immagine
+import { useNavigate } from "react-router-dom";
+import "../styles/Home.css";
+import meditationImage from "../assets/meditation-illustration.png";
 
 const Home = () => {
-  const navigate = useNavigate(); // Hook per la navigazione
+  const navigate = useNavigate();
 
   return (
     <div className="home-container">
@@ -14,14 +13,10 @@ const Home = () => {
       </header>
 
       <div className="home-content">
-        <img
-          src={meditationImage} // Usa l'import
-          alt="Meditazione"
-          className="home-image"
-        />
+        <img src={meditationImage} alt="Meditazione" className="home-image" />
         <p className="description">
           Immergiti nella mindfulness e trasforma il tuo benessere mentale. <br />
-          Prova subito il nostro MediTimer!<br /> 
+          Prova subito il nostro MediTimer!<br />
           Seguici per scoprire nuove funzionalità!
         </p>
         <button className="cta-button" onClick={() => navigate("/timer")}>

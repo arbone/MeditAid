@@ -1,5 +1,5 @@
 // TimerPage.jsx
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/TimerPage.css";
 import Timer from "../components/Timer";

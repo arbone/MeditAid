@@ -1,5 +1,5 @@
 // SoundPlayer.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/SoundPlayer.css";
 
 import Gratitudine from "../sounds/Gratitudine.mp3";

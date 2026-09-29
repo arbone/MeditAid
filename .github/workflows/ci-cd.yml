@@ -1,0 +1,85 @@
+name: MeditAid CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - feat/devops-master
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: meditaid-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Lint, build and containers
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build frontend
+        env:
+          VITE_API_URL: http://localhost:3001
+          VITE_SENTRY_DSN: ""
+          VITE_APP_ENV: ci
+        run: npm run build
+
+      - name: Build frontend container
+        run: docker build --target production -t meditaid-frontend:${{ github.sha }} .
+
+      - name: Build backend container
+        run: docker build -t meditaid-backend:${{ github.sha }} ./server
+
+  deploy-preview:
+    name: Deploy staging preview
+    if: github.event_name == 'pull_request'
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Trigger Vercel staging deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_STAGING_DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail-with-body --silent --show-error             -X POST "$DEPLOY_HOOK"             -o vercel-staging-response.json
+          cat vercel-staging-response.json
+          node -e "const r=require('./vercel-staging-response.json'); if(!r.job?.id) process.exit(1); console.log('Vercel staging job:', r.job.id, '-', r.job.state)"
+
+  deploy-production:
+    name: Deploy production
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Trigger Vercel production deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_PRODUCTION_DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail-with-body --silent --show-error             -X POST "$DEPLOY_HOOK"             -o vercel-production-response.json
+          cat vercel-production-response.json
+          node -e "const r=require('./vercel-production-response.json'); if(!r.job?.id) process.exit(1); console.log('Vercel production job:', r.job.id, '-', r.job.state)"
