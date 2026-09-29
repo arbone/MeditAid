@@ -50,6 +50,29 @@ jobs:
       - name: Build backend container
         run: docker build -t meditaid-backend:${{ github.sha }} ./server
 
+      - name: Smoke test Docker Compose stack
+        run: |
+          cp .env.example .env
+          docker compose up --build -d
+
+          ready=0
+          for i in {1..45}; do
+            if curl --fail --silent http://localhost:3001/health >/dev/null               && curl --fail --silent http://localhost:5173/ >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            docker compose ps
+            docker compose logs --no-color
+            docker compose down -v
+            exit 1
+          fi
+
+          docker compose down -v
+
   deploy-preview:
     name: Deploy staging preview
     if: github.event_name == 'pull_request'
