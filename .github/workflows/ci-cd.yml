@@ -56,25 +56,16 @@ jobs:
     needs: ci
     runs-on: ubuntu-latest
     environment: staging
-    env:
-      VERCEL_ORG_ID: team_2bNmI0G2hFSnUeFiBPWySNwX
-      VERCEL_PROJECT_ID: prj_ZIQdiP4Qe1nBY76VcfufBwMeAL8C
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Vercel CLI
-        run: npm install --global vercel@61.0.0
-
-      - name: Pull Vercel preview environment
-        run: vercel pull --yes --environment=preview --scope=arbone1s-projects --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build preview
-        run: vercel build --scope=arbone1s-projects --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy preview
-        run: vercel deploy --prebuilt --scope=arbone1s-projects --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Trigger Vercel staging deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_STAGING_DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail-with-body --silent --show-error             -X POST "$DEPLOY_HOOK"             -o vercel-staging-response.json
+          cat vercel-staging-response.json
+          node -e "const r=require('./vercel-staging-response.json'); if(!r.job?.id) process.exit(1); console.log('Vercel staging job:', r.job.id, '-', r.job.state)"
 
   deploy-production:
     name: Deploy production
@@ -82,22 +73,13 @@ jobs:
     needs: ci
     runs-on: ubuntu-latest
     environment: production
-    env:
-      VERCEL_ORG_ID: team_2bNmI0G2hFSnUeFiBPWySNwX
-      VERCEL_PROJECT_ID: prj_ZIQdiP4Qe1nBY76VcfufBwMeAL8C
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Vercel CLI
-        run: npm install --global vercel@61.0.0
-
-      - name: Pull Vercel production environment
-        run: vercel pull --yes --environment=production --scope=arbone1s-projects --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build production
-        run: vercel build --prod --scope=arbone1s-projects --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy production
-        run: vercel deploy --prebuilt --prod --scope=arbone1s-projects --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Trigger Vercel production deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_PRODUCTION_DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail-with-body --silent --show-error             -X POST "$DEPLOY_HOOK"             -o vercel-production-response.json
+          cat vercel-production-response.json
+          node -e "const r=require('./vercel-production-response.json'); if(!r.job?.id) process.exit(1); console.log('Vercel production job:', r.job.id, '-', r.job.state)"
