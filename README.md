@@ -47,7 +47,7 @@ Docker Compose avvia insieme frontend e backend, rendendo l'ambiente locale indi
 
 ### Vercel
 
-Vercel è stato scelto per il deploy del frontend Vite perché offre HTTPS, CDN globale, preview deployment e integrazione semplice con pipeline automatizzate. La pipeline usa Vercel CLI: il deploy non dipende da un'operazione manuale.
+Vercel è stato scelto per il deploy del frontend Vite perché offre HTTPS, CDN globale e preview deployment. La pipeline GitHub Actions invoca Deploy Hooks Vercel solo dopo una CI verde, quindi staging e production non dipendono da un'operazione manuale.
 
 ### UptimeRobot
 
@@ -174,7 +174,7 @@ Passaggi principali:
 4. `npm run lint`;
 5. `npm run build`;
 6. build Docker del frontend;
-7. build Docker del backend.
+7. build Docker del backend;\n8. avvio reale dello stack con `docker compose up --build -d` e smoke test HTTP su frontend e healthcheck backend.
 
 Se ESLint restituisce un errore, il comando termina con exit code diverso da zero e GitHub Actions blocca automaticamente i passaggi successivi.
 
