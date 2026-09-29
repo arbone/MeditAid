@@ -139,13 +139,14 @@ VITE_APP_ENV
 PORT
 ```
 
-Secret richiesto da GitHub Actions per Vercel:
+Secrets richiesti da GitHub Actions per i Deploy Hooks Vercel:
 
 ```text
-VERCEL_TOKEN
+VERCEL_STAGING_DEPLOY_HOOK
+VERCEL_PRODUCTION_DEPLOY_HOOK
 ```
 
-Gli identificativi Vercel del progetto (`VERCEL_ORG_ID` e `VERCEL_PROJECT_ID`) non sono credenziali e sono configurati direttamente nel workflow.
+I Deploy Hooks sono URL segreti generati da Vercel in **Project → Settings → Git → Deploy Hooks** e collegati rispettivamente al branch `feat/devops-master` e a `main`. Non è richiesto alcun Personal Access Token Vercel.
 
 I secrets devono essere configurati in GitHub in **Settings → Secrets and variables → Actions**. GitHub maschera automaticamente nei log i valori registrati come secrets. Il workflow non stampa esplicitamente nessuna credenziale.
 
@@ -179,11 +180,11 @@ Se ESLint restituisce un errore, il comando termina con exit code diverso da zer
 
 ### Staging
 
-Per ogni Pull Request verso `main`, dopo una CI verde viene eseguito un Vercel Preview Deployment. Questa preview rappresenta l'ambiente staging.
+Per ogni Pull Request verso `main`, dopo una CI verde GitHub Actions invoca il Deploy Hook Vercel collegato a `feat/devops-master`. La resulting Preview Deployment rappresenta l'ambiente staging.
 
 ### Production
 
-Un push su `main` che supera la CI avvia il job `Deploy production`. Vercel CLI costruisce e pubblica automaticamente la nuova versione production.
+Un push su `main` che supera la CI avvia il job `Deploy production`. GitHub Actions invoca il Deploy Hook Vercel collegato a `main`, che avvia automaticamente la build e pubblicazione production.
 
 ## Error tracking con Sentry
 
