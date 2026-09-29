@@ -57,15 +57,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORG_ID: team_2bNmI0G2hFSnUeFiBPWySNwX
+      VERCEL_PROJECT_ID: prj_ZIQdiP4Qe1nBY76VcfufBwMeAL8C
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@61.0.0
 
       - name: Pull Vercel preview environment
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
@@ -83,15 +83,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORG_ID: team_2bNmI0G2hFSnUeFiBPWySNwX
+      VERCEL_PROJECT_ID: prj_ZIQdiP4Qe1nBY76VcfufBwMeAL8C
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@61.0.0
 
       - name: Pull Vercel production environment
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
