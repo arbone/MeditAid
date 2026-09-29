@@ -139,13 +139,13 @@ VITE_APP_ENV
 PORT
 ```
 
-Secrets richiesti da GitHub Actions per Vercel:
+Secret richiesto da GitHub Actions per Vercel:
 
 ```text
 VERCEL_TOKEN
-VERCEL_ORG_ID
-VERCEL_PROJECT_ID
 ```
+
+Gli identificativi Vercel del progetto (`VERCEL_ORG_ID` e `VERCEL_PROJECT_ID`) non sono credenziali e sono configurati direttamente nel workflow.
 
 I secrets devono essere configurati in GitHub in **Settings → Secrets and variables → Actions**. GitHub maschera automaticamente nei log i valori registrati come secrets. Il workflow non stampa esplicitamente nessuna credenziale.
 
